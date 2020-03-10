@@ -1,0 +1,9 @@
+desc 'deault to test'
+task :default do
+  sh 'ruby beer_song_test.rb'
+end
+
+desc 'run'
+task :run do
+  sh 'ruby beer_song.rb'
+end

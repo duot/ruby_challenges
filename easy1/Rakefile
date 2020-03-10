@@ -1,0 +1,10 @@
+
+desc 'run tests'
+task :default do
+  sh 'ruby roman_numerals_test.rb'
+end
+
+desc 'default'
+task :run do
+  sh 'ruby roman_numerals.rb'
+end
