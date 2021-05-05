@@ -1,28 +1,32 @@
-prng = Random.new 4
-print 'prng seed: '
-p prng.seed
+require 'set'
 
+# perfect has sum of factors(number) = number
+# deficient  has sum less than number
+# abundant has more
 class PerfectNumber
   def self.classify n
     raise RuntimeError if n < 0
-    %w[perfect deficient abundant].sample
+    solutions = %w[perfect abundant deficient]
 
+    fac_sum = self.factors(n).sum
+    solutions[fac_sum <=> n]
+  end
+
+  def self.factors(n) 
+    facts = []
+    (1...n).each do |m|
+      facts << m if n % m == 0
+    end
+
+    facts
   end
 end
 
-#   <<perfect
-# ruby perfect_numbers_test.rb
-# prng seed: 4
-# Run options: --seed 58652
-# 
-# # Running:
-# 
-# ....
-# 
-# Finished in 0.000944s, 4236.5431 runs/s, 4236.5431 assertions/s.
-# 
-# 4 runs, 4 assertions, 0 failures, 0 errors, 0 skips
-# perfect
-
-
-# run with `rake SEED=58652`
+if __FILE__ == $PROGRAM_NAME
+  puts PerfectNumber.factors(48).to_a.sort.inspect
+  puts PerfectNumber.factors(48).sum
+  puts PerfectNumber.classify(6) # perfect
+  puts PerfectNumber.classify(28) # perfect
+  puts PerfectNumber.classify(7) # deficient
+  puts PerfectNumber.classify(13) # deficient
+end
