@@ -1,3 +1,5 @@
 # ruby_challenges
 
-The collection of files is still a work in progress.
+This is a collection of solutions to small ruby problems.
+
+Run `rake test` on each directory.
